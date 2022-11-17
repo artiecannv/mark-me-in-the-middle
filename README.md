@@ -16,7 +16,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/artiecannv/mark-me-in-the-middle">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Mark Me in the Middle</h3>
@@ -191,7 +191,7 @@ Project Link: [https://github.com/artiecannv/mark-me-in-the-middle](https://gith
 [license-url]: https://github.com/artiecannv/mark-me-in-the-middle/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: /assets/images/screenshot.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
