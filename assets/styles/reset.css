@@ -12,6 +12,9 @@
   all: unset;
   display: revert;
 }
+main{
+  font-family: 'Dosis', sans-serif;
+}
 
 /* Preferred box-sizing value */
 *,
@@ -46,6 +49,7 @@ table {
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
 input,
 textarea {
+  user-select: auto;
   -webkit-user-select: auto;
 }
 
@@ -78,6 +82,9 @@ meter {
   -moz-user-modify: read-write;
   -webkit-user-modify: read-write;
   overflow-wrap: break-word;
+  line-break: after-white-space;
+  -webkit-line-break: after-white-space;
+  user-select: auto ;
   -webkit-line-break: after-white-space;
   -webkit-user-select: auto;
 }
