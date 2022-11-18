@@ -19,25 +19,53 @@
     <link rel="stylesheet" href="./assets/styles/style.css" />
     <link rel="icon" href="./assets/images/favicon.ico" /> 
     <title>Mark'em gitIn The Middle</title>
+    <title>Mark Me In The Middle</title>
   </head>
   <body>
     <header>
-      <!-- TODO: space for logo picture and hero styling -->
+      <!-- Logo picture and hero styling -->
       <img src="./assets/images/final_logo.png" alt="Mark-Me-in-the-Middle-logo" />
     </header>
     <main>
       <div id='map' style='width: 750px; height: 750px; margin: auto;'></div>
       <!--TODO: create cards with search inputs (and spinner for request if time allows)
             and search button between them add flex basis to search cards-->
+      <!--TODO: create four cards, two with search inputs and two with placeholder graphics (and spinner for request if time allows)
+            and search button bottom right - only want search function to function when both input field are filled, add flex basis to search cards-->
       <section id="search">
+        <div class="card">
+          <div class="card-body">
        <input type="text" id="locA" class="border border-info"><label for="locA">Location A</label>
+          </div>
+        </div>
+
         <button id="searchbtn" type="button" class="btn btn-danger btn-lg">
           Mark the Middle
         </button>
-       <input type="text" id="locB" class="border border-info" for="locB"><label>Location B</label>
+
+        <div class="card">
+          <div class="card-body">
+        <input type="text" id="locB" class="border border-info" for="locB"><label>Location B</label>
+          </div>
+        </div>
       </section>
+
+    <section id="map">  
+      <div class="card">
+        <div class="card-body">
+          Mappity Map
+        </div>
+      </div>
+    </section>
+
       <!-- TODO: Dynamically populate with list of locations via api -->
-      <section id="reviews"></section>
+      <section id="reviews">
+        <div class="card">
+          <div class="card-body">
+            Reviews
+          </div>
+        </div>
+      </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
