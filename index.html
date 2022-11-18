@@ -26,38 +26,27 @@
       <!--TODO: create cards with search inputs (and spinner for request if time allows)
             and search button between them add flex basis to search cards-->
       <section id="search">
-        <div class="card">
-          <div class="card-body">
-            <div class="input-group">
-              <span class="input-group-text">Location A</span>
-              <textarea
-                id="locA"
-                class="form-control"
-                aria-label="With textarea"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        <button id="search" type="button" class="btn btn-danger btn-lg">
+       <input type="text" id="locA" class="border border-info"><label for="locA">Location A</label>
+        <button id="searchbtn" type="button" class="btn btn-danger btn-lg">
           Mark the Middle
         </button>
-        <div class="card">
-          <div class="card-body">
-            <div class="input-group">
-              <span class="input-group-text">Location B</span>
-              <textarea
-                id="locB"
-                class="form-control"
-                aria-label="With textarea"
-              ></textarea>
-            </div>
-          </div>
-        </div>
+       <input type="text" id="locB" class="border border-info" for="locB"><label>Location B</label>
       </section>
       <!-- TODO: Dynamically populate with list of locations via api -->
       <section id="reviews"></section>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.0.0-beta.14/web.js"></script>
+<script>
+const accessToken = 'pk.eyJ1IjoicG9ya2Nob3BweSIsImEiOiJjbGFraWxzangwNm1rM29vNjBsdDUxaWpiIn0.269b_fLGrm2yTyU3RGPsRw';
+ 
+const script = document.getElementById('search-js');
+script.onload = function() {
+mapboxsearch.autofill({
+accessToken
+});
+};
+</script>
     <script src="./assets/script/script.js"></script>
   </body>
 </html>
