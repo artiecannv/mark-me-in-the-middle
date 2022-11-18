@@ -1,0 +1,21 @@
+* {
+    background-color: #4B4959;
+    color: #000000;
+}
+
+.card {
+    background-color: #7A788B;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.card-body, .border, .label {
+    background-color: #7A788B;
+}
+
+
+
