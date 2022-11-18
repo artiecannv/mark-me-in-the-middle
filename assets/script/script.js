@@ -31,12 +31,16 @@ function setupMap(center){
     center: [-74.5, 40], 
     zoom: 14, 
     projection: "globe", 
-  });
-  map.on("style.load", () => {
-    map.setFog({}); 
-  });
+  })
+
   const nav = new mapboxgl.NavigationControl();
-  map.addControl(nav, "top-right")
+  map.addControl(nav, "top-right");
+
+  var directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+  });
+  
+  map.addControl(directions, 'top-left');
 }
 setupMap()
 
