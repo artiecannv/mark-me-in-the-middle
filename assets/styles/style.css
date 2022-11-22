@@ -4,6 +4,12 @@
   color: #000000;
 }
 
+img {
+  background: none;
+  display: block;
+  margin: auto;
+}
+
 .card {
   background-color: #7a788b;
   width: 25vw;
