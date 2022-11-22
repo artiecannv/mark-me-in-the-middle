@@ -12,12 +12,30 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  padding: 5rem;
 }
 
 .card-body,
 .border,
 .label {
-  background-color: #7a788b;
+  background-color: #ad803d;
+} 
+
+.card-1, 
+.input-1 {
+  background-color: #ad803d;
+}
+
+.card-2, 
+.card-body2, 
+.input-2,
+.label-2  {
+  background-color: #b03028; 
+}
+
+.navbar {
+  background-color: #7a788b
+  ;
 }
 
 body {
@@ -26,6 +44,14 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+.label {
+  font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 #geocoder-container > div {
