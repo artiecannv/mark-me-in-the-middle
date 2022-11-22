@@ -39,7 +39,15 @@ margin-left: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 30%;
+}
+
+#reviews {
+  margin-left: 37.5%;
+  height: 20vh;
 
 }
 
-
+#searchbtn {
+  margin-left: 75%;
+}
