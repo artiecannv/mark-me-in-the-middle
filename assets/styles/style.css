@@ -40,6 +40,9 @@ margin-left: 25%;
   justify-content: center;
   align-items: center;
   margin-left: 30%;
+  border: 1rem solid #AD803D;
+  border-radius: 10px;
+  
 }
 
 #reviews {
@@ -50,4 +53,5 @@ margin-left: 25%;
 
 #searchbtn {
   margin-left: 75%;
+  background-color: #B03028;
 }
