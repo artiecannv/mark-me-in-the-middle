@@ -51,7 +51,20 @@ margin-left: 25%;
 
 }
 
-#searchbtn {
+.btn {
   margin-left: 75%;
   background-color: #B03028;
+  color: black;
+  border-radius: 10px;
+  border: none;
 }
+
+.btn:hover {
+  cursor: pointer;
+  box-shadow: 0 0.4rem 1.4rem 0 rgba(221, 224, 228, 0.6);
+  transition: 150ms;
+  transform: scale(1.03);
+  color: white;
+  border: 0;
+}
+
