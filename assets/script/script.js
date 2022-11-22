@@ -31,18 +31,11 @@ function setupMap(center) {
     projection: "globe",
   });
 
-  // var point1 = turf.point([locA.coords]);
-  // var point2 = turf.point([locB.coords]);
-
-  // var midpoint = turf.midpoint(point1, point2);
-
-  // const nav = new mapboxgl.NavigationControl();
-  // map.addControl(nav, "top-right");
-
   var directions = new MapboxDirections({
     accessToken: mapboxgl.accessToken,
     controls: {
-      instructions: false
+      instructions: false,
+      profileSwitcher: false
     }
   });
 
@@ -51,11 +44,10 @@ function setupMap(center) {
   directions.on("route", function (e) {
     locA = directions.getOrigin().geometry.coordinates;
     locB = directions.getDestination().geometry.coordinates;
-    var point1 = turf.point(locA);
-    var point2 = turf.point(locB);
+    const point1 = turf.point(locA);
+    const point2 = turf.point(locB);
 
-    var midpoint = turf.midpoint(point1, point2);
-    console.log(midpoint);
+    const midpoint = turf.midpoint(point1, point2);
     marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
       .addTo(map);
