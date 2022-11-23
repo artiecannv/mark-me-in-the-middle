@@ -35,8 +35,9 @@ function setupMap(center) {
     accessToken: mapboxgl.accessToken,
     controls: {
       instructions: false,
-      profileSwitcher: false
-    }
+      profileSwitcher: false,
+    },
+    interactive: false,
   });
 
   map.addControl(directions, "top-left");
@@ -48,11 +49,40 @@ function setupMap(center) {
     const point2 = turf.point(locB);
 
     const midpoint = turf.midpoint(point1, point2);
-    marker = new mapboxgl.Marker()
+    // console.log(midpoint);
+    const marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
       .addTo(map);
-  });
-}
+    console.log(midpoint.geometry.coordinates);
+    const space = '%2C';
+    const coords = midpoint.geometry.coordinates;
+    console.log(coords);
+    let lat = coords[1];
+    let lng = coords[0];
+    console.log(Math.round(lng), Math.round(lat));
+    const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
+    // if (midpoint.geometry.type === 'Point') {
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=',
+        }
+      }
+      async function fourSquare() {
+        const response = await fetch(fourURL, options);
+        const data = await response.json();
+        console.log(data, fourURL);
+
+        // try {
+
+        // } catch {
+
+        // }
+      }
+      fourSquare()
+    });
+};
 
 // function searchManager(event) {
 //     event.preventDefault();
