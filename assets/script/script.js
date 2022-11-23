@@ -38,8 +38,7 @@ function setupMap(center) {
     projection: "globe",
   });
 
-  //outlining controls for map functionality 
-    var directions = new MapboxDirections({
+  const directions = new MapboxDirections({
     accessToken: mapboxgl.accessToken,
     controls: {
       instructions: false,
@@ -53,6 +52,7 @@ function setupMap(center) {
 
   //outlining what happens when information is input into direction control box
   directions.on("route", function (e) {
+    e.preventDefault();
     locA = directions.getOrigin().geometry.coordinates;
     locB = directions.getDestination().geometry.coordinates;
     const point1 = turf.point(locA);
@@ -60,19 +60,17 @@ function setupMap(center) {
 
   //obtaining midpoint between location A and location B and placing marker on map
     const midpoint = turf.midpoint(point1, point2);
-    // console.log(midpoint);
-    const marker = new mapboxgl.Marker()
+   
+    marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
       .addTo(map);
-    console.log(midpoint.geometry.coordinates);
+
     const space = '%2C';
     const coords = midpoint.geometry.coordinates;
-    console.log(coords);
     let lat = coords[1];
     let lng = coords[0];
-    console.log(Math.round(lng), Math.round(lat));
     const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
-    // if (midpoint.geometry.type === 'Point') {
+
       const options = {
         method: 'GET',
         headers: {
