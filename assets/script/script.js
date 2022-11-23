@@ -52,7 +52,6 @@ function setupMap(center) {
 
   //outlining what happens when information is input into direction control box
   directions.on("route", function (e) {
-    e.preventDefault();
     locA = directions.getOrigin().geometry.coordinates;
     locB = directions.getDestination().geometry.coordinates;
     const point1 = turf.point(locA);
@@ -78,7 +77,7 @@ function setupMap(center) {
           Authorization: 'fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=',
         }
       }
-
+      
     //setting up function for the data obtained through foursquare api
       async function fourSquare() {
         const response = await fetch(fourURL, options);
