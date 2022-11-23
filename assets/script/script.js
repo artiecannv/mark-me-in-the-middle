@@ -1,10 +1,11 @@
 //global variables
 const searchEl = $("#search");
 const reviewEl = $("#reviews");
+const pastEl = $("#pastsearches");
 let locA = [];
 let locB = [];
 const searchBtn = $("#searchbtn");
-
+const geoStorage = JSON.parse(localStorage.getItem("middle")) || [];
 //access token from mapbox.com
 mapboxgl.accessToken = `pk.eyJ1IjoicG9ya2Nob3BweSIsImEiOiJjbGFraWxzangwNm1rM29vNjBsdDUxaWpiIn0.269b_fLGrm2yTyU3RGPsRw`;
 
@@ -29,7 +30,7 @@ function setupMap(center) {
   if (!mapboxgl.supported()) {
     alert("Your browser does not support Mapbox GL");
   }
- //setting up map with parameters from mapbox.com 
+  //setting up map with parameters from mapbox.com
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v12",
@@ -56,45 +57,50 @@ function setupMap(center) {
     locB = directions.getDestination().geometry.coordinates;
     const point1 = turf.point(locA);
     const point2 = turf.point(locB);
-
-  //obtaining midpoint between location A and location B and placing marker on map
+    //obtaining midpoint between location A and location B and placing marker on map
     const midpoint = turf.midpoint(point1, point2);
-   
-    marker = new mapboxgl.Marker()
-      .setLngLat(midpoint.geometry.coordinates)
-      .addTo(map);
-
-    const space = '%2C';
+    const space = "%2C";
     const coords = midpoint.geometry.coordinates;
     let lat = coords[1];
     let lng = coords[0];
     const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
 
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=',
-        }
-      }
-      
+    marker = new mapboxgl.Marker()
+      .setLngLat(midpoint.geometry.coordinates)
+      .addTo(map);
+
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: "fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=",
+      },
+    };
+
     //setting up function for the data obtained through foursquare api
-      async function fourSquare() {
-        const response = await fetch(fourURL, options);
-        const data = await response.json();
-        console.log(data, fourURL);
+    async function fourSquare() {
+      const response = await fetch(fourURL, options);
+      const data = await response.json();
+      console.log(data);
+      //coords.push();
+      geoStorage.push(coords);
+      localStorage.setItem("middle", JSON.stringify(geoStorage));
+      // try {
 
-        // try {
+      // } catch {
 
-        // } catch {
-
-        // }
-      }
+      // }
+    }
     //calling function
-      fourSquare()
-    });
-};
+    fourSquare();
+  });
+}
 
+function pastSearch() {
+  geoStorage.forEach(function (file) {
+    const pastButtons = $("<button>");
+  });
+}
 // function searchManager(event) {
 //     event.preventDefault();
 //     const locAVal = locA.val();
