@@ -1,9 +1,11 @@
 //global variables
 const searchEl = $("#search");
-const reviewEl = $("#reviews");
+const reviewsContainer = document.getElementById("reviews");
 const pastEl = $("#pastsearches");
 let locA = [];
 let locB = [];
+let fourUrl = ""
+let coords = ""
 const searchBtn = $("#searchbtn");
 const geoStorage = JSON.parse(localStorage.getItem("middle")) || [];
 //access token from mapbox.com
@@ -31,7 +33,7 @@ function setupMap(center) {
     alert("Your browser does not support Mapbox GL");
   }
 
-  //setting up map with parameters from mapbox.com 
+  //setting up map with parameters from mapbox.com
 
   const map = new mapboxgl.Map({
     container: "map",
@@ -41,9 +43,7 @@ function setupMap(center) {
     projection: "globe",
   });
 
-
   const directions = new MapboxDirections({
-
     accessToken: mapboxgl.accessToken,
     controls: {
       instructions: false,
@@ -62,46 +62,40 @@ function setupMap(center) {
     const point1 = turf.point(locA);
     const point2 = turf.point(locB);
 
+    
     //obtaining midpoint between location A and location B and placing marker on map
     const midpoint = turf.midpoint(point1, point2);
     const space = "%2C";
     const coords = midpoint.geometry.coordinates;
     let lat = coords[1];
     let lng = coords[0];
-    const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
+    fourUrl = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
 
     marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
       .addTo(map);
 
-    // if (midpoint.geometry.type === 'Point') {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=',
-      }
-    }
+       const options = {
+         method: "GET",
+         headers: {
+           accept: "application/json",
+           Authorization: "fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=",
+         },
+       };
 
-    //setting up function for the data obtained through foursquare api
-    async function fourSquare() {
-      const response = await fetch(fourURL, options);
-      const data = await response.json();
-      cardRenderer(data);
-      coords.push(data.results[0].name);
-      geoStorage.push(coords);
-      localStorage.setItem("middle", JSON.stringify(geoStorage));
-      pastSearch()
-    }
-    //calling function
-    fourSquare()
+  async function fourSquare() {
+    const response = await fetch(fourUrl, options);
+    const data = await response.json();
+    cardRenderer(data);
+    coords.push(data.results[0].name);
+    geoStorage.push(coords);
+    localStorage.setItem("middle", JSON.stringify(geoStorage));
     async function cardRenderer(places) {
-      const reviewsContainer = document.getElementById('reviews')
       const createCard = (placeName, address) => {
-        const cardContainer = document.createElement('div');
-        const nameEl = document.createElement('h1');
+        const cardContainer = document.createElement("div");
+        const nameEl = document.createElement("h1");
         nameEl.textContent = placeName;
-        const addressEl = document.createElement('p');
+        const addressEl = document.createElement("p");
         addressEl.textContent = address;
         cardContainer.appendChild(nameEl);
         cardContainer.appendChild(addressEl);
@@ -113,42 +107,58 @@ function setupMap(center) {
         let placeName = place?.location?.name;
         let placeCard = createCard(placeName, address);
         reviewsContainer.appendChild(placeCard);
-      };
-    };
+      }
+    }
+    function pastSearch() {
+      geoStorage.forEach(function (file) {
+        const pastButtons = $("<button>");
+        pastButtons.text(file[2]);
+        pastButtons.addClass("btn btn-error text-white m-auto");
+        pastButtons.appendTo(reviewsContainer);
+        cardRenderer();
+      });
+    }
+    pastSearch();
+  }
+  fourSquare()
   });
   
 }
-  // function searchManager(event) {
-  //     event.preventDefault();
-  //     const locAVal = locA.val();
-  //     const locationAUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locAVal}.json?access_token=${mapKey}`;
-  //     const locBVal = locB.val();
-  //     const locationBUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locBVal}.json?access_token=${mapKey}`;
-  //     async function getLocationA() {
-  //       const response = await fetch(locationAUrl);
-  //       const data = await response.json();
-  //       console.log(data);
-  //     }
-  //     getLocationA();
-  //     async function getLocationB() {
-  //       const response = await fetch(locationBUrl);
-  //       const data = await response.json();
-  //       console.log(data);
-  //     }
-  //     getLocationB();
-  //   }
+  // if (midpoint.geometry.type === 'Point') {
 
 
-function pastSearch() {
-  geoStorage.forEach(function (file) {
-    const pastButtons = $("<button>");
-    for(let i=0; i<geoStorage.length;i++){
-    pastButtons.text(geoStorage[2])
-    pastButtons.addClass('button button-error text-white m-auto')
-    pastButtons.appendTo(pastEl)
-    cardRenderer(data)
-    }
-  });
-}
+    //setting up function for the data obtained through foursquare api
+  
+    //calling function
+    
+// function searchManager(event) {
+//     event.preventDefault();
+//     const locAVal = locA.val();
+//     const locationAUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locAVal}.json?access_token=${mapKey}`;
+//     const locBVal = locB.val();
+//     const locationBUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locBVal}.json?access_token=${mapKey}`;
+//     async function getLocationA() {
+//       const response = await fetch(locationAUrl);
+//       const data = await response.json();
+//       console.log(data);
+//     }
+//     getLocationA();
+//     async function getLocationB() {
+//       const response = await fetch(locationBUrl);
+//       const data = await response.json();
+//       console.log(data);
+//     }
+//     getLocationB();
+//   }
+
+// function pastSearch() {
+//   geoStorage.forEach(function (file) {
+//     const pastButtons = $("<button>");
+//     pastButtons.text(file[2]);
+//     pastButtons.addClass("btn btn-error text-white m-auto");
+//     pastButtons.appendTo(reviewsContainer);
+//    cardRenderer(places)
+//   });
+// }
 
 //searchBtn.on("click", searchManager);
