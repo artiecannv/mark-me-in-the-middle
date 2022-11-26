@@ -88,7 +88,7 @@ function setupMap(center) {
       const response = await fetch(fourURL, options);
       const data = await response.json();
       cardRenderer(data);
-      //coords.push();
+      coords.push(results[0].location[0]);
       geoStorage.push(coords);
       localStorage.setItem("middle", JSON.stringify(geoStorage));
     }
@@ -136,7 +136,6 @@ function setupMap(center) {
   //     }
   //     getLocationB();
   //   }
-    fourSquare();
 
 
 function pastSearch() {
