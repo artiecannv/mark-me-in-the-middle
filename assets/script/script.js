@@ -30,7 +30,9 @@ function setupMap(center) {
   if (!mapboxgl.supported()) {
     alert("Your browser does not support Mapbox GL");
   }
-  //setting up map with parameters from mapbox.com
+
+  //setting up map with parameters from mapbox.com 
+
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v12",
@@ -39,7 +41,9 @@ function setupMap(center) {
     projection: "globe",
   });
 
+
   const directions = new MapboxDirections({
+
     accessToken: mapboxgl.accessToken,
     controls: {
       instructions: false,
@@ -57,6 +61,7 @@ function setupMap(center) {
     locB = directions.getDestination().geometry.coordinates;
     const point1 = turf.point(locA);
     const point2 = turf.point(locB);
+
     //obtaining midpoint between location A and location B and placing marker on map
     const midpoint = turf.midpoint(point1, point2);
     const space = "%2C";
@@ -65,33 +70,71 @@ function setupMap(center) {
     let lng = coords[0];
     const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
 
-    marker = new mapboxgl.Marker()
-      .setLngLat(midpoint.geometry.coordinates)
-      .addTo(map);
-
+    // if (midpoint.geometry.type === 'Point') {
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
-        accept: "application/json",
-        Authorization: "fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=",
-      },
-    };
+        accept: 'application/json',
+        Authorization: 'fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=',
+      }
+    }
 
     //setting up function for the data obtained through foursquare api
     async function fourSquare() {
       const response = await fetch(fourURL, options);
       const data = await response.json();
-      console.log(data);
-      //coords.push();
-      geoStorage.push(coords);
-      localStorage.setItem("middle", JSON.stringify(geoStorage));
-      // try {
-
-      // } catch {
-
-      // }
+      cardRenderer(data);
     }
     //calling function
+    fourSquare()
+    async function cardRenderer(places) {
+      const reviewsContainer = document.getElementById('reviews')
+      const createCard = (placeName, address) => {
+        const cardContainer = document.createElement('div');
+        const nameEl = document.createElement('h1');
+        nameEl.textContent = placeName;
+        const addressEl = document.createElement('p');
+        addressEl.textContent = address;
+        cardContainer.appendChild(nameEl);
+        cardContainer.appendChild(addressEl);
+        return cardContainer;
+      };
+      for (let i = 0; i < places.results.length; i++) {
+        let place = places.results[i];
+        let address = place?.location?.formatted_address;
+        let placeName = place?.location?.name;
+        let placeCard = createCard(placeName, address);
+        reviewsContainer.appendChild(placeCard);
+      };
+    };
+  });
+  
+}
+  // function searchManager(event) {
+  //     event.preventDefault();
+  //     const locAVal = locA.val();
+  //     const locationAUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locAVal}.json?access_token=${mapKey}`;
+  //     const locBVal = locB.val();
+  //     const locationBUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locBVal}.json?access_token=${mapKey}`;
+  //     async function getLocationA() {
+  //       const response = await fetch(locationAUrl);
+  //       const data = await response.json();
+  //       console.log(data);
+  //     }
+  //     getLocationA();
+  //     async function getLocationB() {
+  //       const response = await fetch(locationBUrl);
+  //       const data = await response.json();
+  //       console.log(data);
+  //     }
+  //     getLocationB();
+  //   }
+
+    marker = new mapboxgl.Marker()
+      .setLngLat(midpoint.geometry.coordinates)
+      .addTo(map);
+
+ 
     fourSquare();
   });
 }
@@ -101,25 +144,5 @@ function pastSearch() {
     const pastButtons = $("<button>");
   });
 }
-// function searchManager(event) {
-//     event.preventDefault();
-//     const locAVal = locA.val();
-//     const locationAUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locAVal}.json?access_token=${mapKey}`;
-//     const locBVal = locB.val();
-//     const locationBUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${locBVal}.json?access_token=${mapKey}`;
-//     async function getLocationA() {
-//       const response = await fetch(locationAUrl);
-//       const data = await response.json();
-//       console.log(data);
-//     }
-//     getLocationA();
-//     async function getLocationB() {
-//       const response = await fetch(locationBUrl);
-//       const data = await response.json();
-//       console.log(data);
-//     }
-//     getLocationB();
-//   }
-// }
-
+/
 //searchBtn.on("click", searchManager);
