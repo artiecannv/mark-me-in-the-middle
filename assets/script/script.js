@@ -70,6 +70,10 @@ function setupMap(center) {
     let lng = coords[0];
     const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
 
+    marker = new mapboxgl.Marker()
+      .setLngLat(midpoint.geometry.coordinates)
+      .addTo(map);
+
     // if (midpoint.geometry.type === 'Point') {
     const options = {
       method: 'GET',
@@ -84,6 +88,9 @@ function setupMap(center) {
       const response = await fetch(fourURL, options);
       const data = await response.json();
       cardRenderer(data);
+      //coords.push();
+      geoStorage.push(coords);
+      localStorage.setItem("middle", JSON.stringify(geoStorage));
     }
     //calling function
     fourSquare()
@@ -129,20 +136,13 @@ function setupMap(center) {
   //     }
   //     getLocationB();
   //   }
-
-    marker = new mapboxgl.Marker()
-      .setLngLat(midpoint.geometry.coordinates)
-      .addTo(map);
-
- 
     fourSquare();
-  });
-}
+
 
 function pastSearch() {
   geoStorage.forEach(function (file) {
     const pastButtons = $("<button>");
   });
 }
-/
+
 //searchBtn.on("click", searchManager);
