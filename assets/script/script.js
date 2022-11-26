@@ -1,10 +1,11 @@
 //global variables
 const searchEl = $("#search");
 const reviewEl = $("#reviews");
+const pastEl = $("#pastsearches");
 let locA = [];
 let locB = [];
 const searchBtn = $("#searchbtn");
-
+const geoStorage = JSON.parse(localStorage.getItem("middle")) || [];
 //access token from mapbox.com
 mapboxgl.accessToken = `pk.eyJ1IjoicG9ya2Nob3BweSIsImEiOiJjbGFraWxzangwNm1rM29vNjBsdDUxaWpiIn0.269b_fLGrm2yTyU3RGPsRw`;
 
@@ -29,7 +30,9 @@ function setupMap(center) {
   if (!mapboxgl.supported()) {
     alert("Your browser does not support Mapbox GL");
   }
+
   //setting up map with parameters from mapbox.com 
+
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v12",
@@ -38,8 +41,9 @@ function setupMap(center) {
     projection: "globe",
   });
 
-  //outlining controls for map functionality 
-  var directions = new MapboxDirections({
+
+  const directions = new MapboxDirections({
+
     accessToken: mapboxgl.accessToken,
     controls: {
       instructions: false,
@@ -60,18 +64,12 @@ function setupMap(center) {
 
     //obtaining midpoint between location A and location B and placing marker on map
     const midpoint = turf.midpoint(point1, point2);
-    // console.log(midpoint);
-    const marker = new mapboxgl.Marker()
-      .setLngLat(midpoint.geometry.coordinates)
-      .addTo(map);
-    console.log(midpoint.geometry.coordinates);
-    const space = '%2C';
+    const space = "%2C";
     const coords = midpoint.geometry.coordinates;
-    console.log(coords);
     let lat = coords[1];
     let lng = coords[0];
-    console.log(Math.round(lng), Math.round(lat));
     const fourURL = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
+
     // if (midpoint.geometry.type === 'Point') {
     const options = {
       method: 'GET',
@@ -86,11 +84,6 @@ function setupMap(center) {
       const response = await fetch(fourURL, options);
       const data = await response.json();
       cardRenderer(data);
-      // try {
-
-      // } catch {
-
-      // }
     }
     //calling function
     fourSquare()
@@ -136,4 +129,20 @@ function setupMap(center) {
   //     }
   //     getLocationB();
   //   }
+
+    marker = new mapboxgl.Marker()
+      .setLngLat(midpoint.geometry.coordinates)
+      .addTo(map);
+
+ 
+    fourSquare();
+  });
+}
+
+function pastSearch() {
+  geoStorage.forEach(function (file) {
+    const pastButtons = $("<button>");
+  });
+}
+/
 //searchBtn.on("click", searchManager);
