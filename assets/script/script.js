@@ -81,8 +81,9 @@ function setupMap(center) {
     async function fourSquare() {
       const response = await fetch(fourURL, options);
       const data = await response.json();
-      console.log(data);
-      //coords.push();
+      console.log(data.results[0].name);
+      cardRenderer(data);
+      coords.push(data.results[0].name);
       geoStorage.push(coords);
       localStorage.setItem("middle", JSON.stringify(geoStorage));
       // try {
