@@ -88,7 +88,8 @@ function setupMap(center) {
       const response = await fetch(fourURL, options);
       const data = await response.json();
       cardRenderer(data);
-      coords.push(results[0].location[0]);
+      console.log(data);
+      coords.push(data.results[0].location[0]);
       geoStorage.push(coords);
       localStorage.setItem("middle", JSON.stringify(geoStorage));
     }
@@ -97,7 +98,10 @@ function setupMap(center) {
     async function cardRenderer(places) {
       const reviewsContainer = document.getElementById('reviews')
       const createCard = (placeName, address) => {
+        
+        console.log(placeName);
         const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card');
         const nameEl = document.createElement('h1');
         nameEl.textContent = placeName;
         const addressEl = document.createElement('p');
@@ -106,13 +110,16 @@ function setupMap(center) {
         cardContainer.appendChild(addressEl);
         return cardContainer;
       };
+      const cardList = document.getElementById('card-list');
       for (let i = 0; i < places.results.length; i++) {
         let place = places.results[i];
         let address = place?.location?.formatted_address;
-        let placeName = place?.location?.name;
+        let placeName = place?.name;
         let placeCard = createCard(placeName, address);
-        reviewsContainer.appendChild(placeCard);
+        // reviewsContainer.appendChild(placeCard);
+        cardList.appendChild(placeCard);
       };
+      
     };
   });
   
