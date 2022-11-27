@@ -74,7 +74,27 @@ function setupMap(center) {
     marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
       .addTo(map);
+    // if (midpoint.geometry.type === 'Point') {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'fsq3oS7mve89jEM85Pb6sm0CO/tlhFcvxCt0DJYiG1icqUQ=',
+      }
+    }
 
+    //setting up function for the data obtained through foursquare api
+    async function fourSquare() {
+      const response = await fetch(fourURL, options);
+      const data = await response.json();
+      cardRenderer(data);
+      console.log(data);
+      coords.push(data.results[0].location[0]);
+      geoStorage.push(coords);
+      localStorage.setItem("middle", JSON.stringify(geoStorage));
+    }
+    //calling function
+    fourSquare()
        const options = {
          method: "GET",
          headers: {
@@ -92,6 +112,11 @@ function setupMap(center) {
     localStorage.setItem("middle", JSON.stringify(geoStorage));
     async function cardRenderer(places) {
       const createCard = (placeName, address) => {
+        
+        console.log(placeName);
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card');
+        const nameEl = document.createElement('h1');
         const cardContainer = document.createElement("div");
         const nameEl = document.createElement("h1");
         nameEl.textContent = placeName;
@@ -101,11 +126,17 @@ function setupMap(center) {
         cardContainer.appendChild(addressEl);
         return cardContainer;
       };
+      const cardList = document.getElementById('card-list');
       for (let i = 0; i < places.results.length; i++) {
         let place = places.results[i];
         let address = place?.location?.formatted_address;
-        let placeName = place?.location?.name;
+        let placeName = place?.name;
         let placeCard = createCard(placeName, address);
+        // reviewsContainer.appendChild(placeCard);
+        cardList.appendChild(placeCard);
+      };
+      
+    };
         reviewsContainer.appendChild(placeCard);
       }
     }

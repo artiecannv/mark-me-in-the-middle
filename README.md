@@ -10,24 +10,19 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/artiecannv/mark-me-in-the-middle">
-    <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/final_logo.png" alt="Logo" height="100">
   </a>
-
-<h3 align="center">Mark Me in the Middle</h3>
-
   <p align="center">
-    A simple page for finding the middle point between two different points on a map and what types of business are nearby.
+    A simple page for finding the middle point between two different points on a map and what types of places you can go to that are nearby.
     <br />
-    <a href="https://github.com/artiecannv/mark-me-in-the-middle"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/users/artiecannv/projects/1"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/artiecannv/mark-me-in-the-middle">View Demo</a>
+    <a href="https://artiecannv.github.io/mark-me-in-the-middle/">View Demo</a>
     ·
     <a href="https://github.com/artiecannv/mark-me-in-the-middle/issues">Report Bug</a>
     ·
@@ -68,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://artiecannv.github.io/mark-me-in-the-middle/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -87,7 +82,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
- Clone or use the Project's Page.
+ Clone the Github repository or use the Project's Page.
  Next you will need to enter your address that you are starting from, AND an address that the person you are meeting will be starting from.
 
 ### Prerequisites
@@ -96,9 +91,9 @@ Two different locations and a type of place you wish to visit.
 
 ### Installation
 
-1. Go to the Project's Page [https://example.com](https://example.com)
+1. Go to the Project's Page: [Mark Me In The Middle](https://artiecannv.github.io/mark-me-in-the-middle/)
 2. Using the different locations and a type of place you wish to visit, determine the location with the person you are meeting with.
-3. Go to the location. :) 
+3. Walk, drive, swim, or fly to the location! :) 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -116,6 +111,10 @@ To find the middle point between two latitude and longitude points with local in
 <!-- ROADMAP -->
 ## Roadmap
 
+- [X] Add MapBox  
+- [X] Using Turf, find the middle coordinates.
+- [X] Using the FourSquare API, find places to go nearby.
+- [X] Create elements based results to display places nearby via Javacript.
 - [ ] Add a live tracker to the different moving targets.
 - [ ] Add reviews to the locations that are populated with the APIs.
 
@@ -154,13 +153,12 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-* Arthur Cann - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-* Ben Orlowski - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-* Brendan Borowski - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-* Christin Carter - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+* Arthur Cann -      [Github](https://github.com/artiecannv) - [Email](mailTo:thefiftharthur@gmail.com)
+* Ben Orlowski - [GitHub](https://github/pick1100)  -  [Email](mailTo:BenOrlowski@Me.com)
+* Brendan Borowski - [Github](https://Github.com/loudwhisperer)
+* Christin Carter - [Github](https://Github.com/porkchoppy)
 
-
-Project Link: [https://github.com/artiecannv/mark-me-in-the-middle](https://github.com/artiecannv/mark-me-in-the-middle)
+Project Link: [Github.com/artiecannv/mark-me-in-the-middle](https://github.com/artiecannv/mark-me-in-the-middle)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -169,9 +167,9 @@ Project Link: [https://github.com/artiecannv/mark-me-in-the-middle](https://gith
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* [https://github.com/othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [JQuery](www.JQuery-url)
+* [Bootstrap](https://getbootstrap.com)
+* [Best README Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
