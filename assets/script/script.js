@@ -19,7 +19,6 @@ navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
 
 //setting up our map with latitude and longitude values from a successful search
 function successLocation(position) {
-  console.log(position);
   setupMap([position.coords.longitude, position.coords.latitude]);
 }
 
@@ -91,11 +90,9 @@ function setupMap(center) {
       coords.push(data.results[0].name);
       geoStorage.push(coords);
       localStorage.setItem("middle", JSON.stringify(geoStorage));
-
-      console.log(geoStorage);
       async function cardRenderer(places) {
+        
         const createCard = (placeName, address) => {
-          console.log(placeName);
           const cardContainer = document.createElement("div");
           cardContainer.classList.add("card");
           const nameEl = document.createElement("h1");
@@ -107,6 +104,7 @@ function setupMap(center) {
           return cardContainer;
         };
         const cardList = document.getElementById("card-list");
+        cardList.innerHTML = "";
         for (let i = 0; i < places.results.length; i++) {
           let place = places.results[i];
           let address = place?.location?.formatted_address;
@@ -115,35 +113,15 @@ function setupMap(center) {
           cardList.appendChild(placeCard);
         }
       }
+      
     }
-    //   async function cardRenderer(places) {
-
-    //     const createCard = (placeName, address) => {
-    //       console.log(placeName);
-    //       const cardContainer = $("div");
-    //       cardContainer.addClass("card");
-    //       const nameEl = $("h1");
-    //       nameEl.text(placeName)
-    //       const addressEl = $("p");
-    //       addressEl.text(address);
-    //       cardContainer.append(nameEl);
-    //       cardContainer.append(addressEl);
-    //       return cardContainer;
-    //     };
-    //     const cardList = $("card-list");
-    //     for (let i = 0; i < places.results.length; i++) {
-    //       let place = places.results[i];
-    //       let address = place?.location?.formatted_address;
-    //       let placeName = place?.name;
-    //       let placeCard = createCard(placeName, address);
-    //       cardList.append(placeCard);
-    //     }
-    //   }
-    //   reviewsContainer.empty();
-    // }
     fourSquare();
   });
 }
+
+// function clearCards(){
+
+// }
 
 function pastSearch() {
   const pastList = $("<ul>");
@@ -154,7 +132,7 @@ function pastSearch() {
     pastPlace.addClass("");
     pastPlace.appendTo(pastList);
   });
-  pastList.appendTo(reviewsContainer);
+  pastList.appendTo(pastEl);
 }
 
 pastBtnEl.one("click", pastSearch);
