@@ -1,5 +1,5 @@
 //global variables
-const searchEl = $("#search");
+const pastBtnEl = $("#pastbtn");
 const reviewsContainer = $("#reviews");
 const pastEl = $("#pastsearches");
 const mapEl = $("#map");
@@ -19,7 +19,6 @@ navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
 
 //setting up our map with latitude and longitude values from a successful search
 function successLocation(position) {
-  console.log(position);
   setupMap([position.coords.longitude, position.coords.latitude]);
 }
 
@@ -69,6 +68,7 @@ function setupMap(center) {
     const coords = midpoint.geometry.coordinates;
     let lat = coords[1];
     let lng = coords[0];
+
     fourUrl = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
     marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
@@ -83,17 +83,16 @@ function setupMap(center) {
     };
 
     async function fourSquare() {
-      
       const response = await fetch(fourUrl, options);
       const data = await response.json();
       cardRenderer(data);
-      
+
       coords.push(data.results[0].name);
       geoStorage.push(coords);
       localStorage.setItem("middle", JSON.stringify(geoStorage));
       async function cardRenderer(places) {
+        
         const createCard = (placeName, address) => {
-          console.log(placeName);
           const cardContainer = document.createElement("div");
           cardContainer.classList.add("card");
           const nameEl = document.createElement("h1");
@@ -105,6 +104,7 @@ function setupMap(center) {
           return cardContainer;
         };
         const cardList = document.getElementById("card-list");
+        cardList.innerHTML = "";
         for (let i = 0; i < places.results.length; i++) {
           let place = places.results[i];
           let address = place?.location?.formatted_address;
@@ -113,44 +113,26 @@ function setupMap(center) {
           cardList.appendChild(placeCard);
         }
       }
+      
     }
-    //   async function cardRenderer(places) {
-
-    //     const createCard = (placeName, address) => {
-    //       console.log(placeName);
-    //       const cardContainer = $("div");
-    //       cardContainer.addClass("card");
-    //       const nameEl = $("h1");
-    //       nameEl.text(placeName)
-    //       const addressEl = $("p");
-    //       addressEl.text(address);
-    //       cardContainer.append(nameEl);
-    //       cardContainer.append(addressEl);
-    //       return cardContainer;
-    //     };
-    //     const cardList = $("card-list");
-    //     for (let i = 0; i < places.results.length; i++) {
-    //       let place = places.results[i];
-    //       let address = place?.location?.formatted_address;
-    //       let placeName = place?.name;
-    //       let placeCard = createCard(placeName, address);
-    //       cardList.append(placeCard);
-    //     }
-    //   }
-    //   reviewsContainer.empty();
-    // }
     fourSquare();
-    
-    function pastSearch() {
-      const pastList = $("<ul>");
-      geoStorage.forEach(function (file) {
-        const pastPlace = $("<li>");
-        pastPlace.text(file[0]);
-        pastPlace.addClass("");
-        pastPlace.appendTo(pastList);
-      });
-      pastList.appendTo(reviewsContainer);
-    }
-    pastSearch();
   });
 }
+
+// function clearCards(){
+
+// }
+
+function pastSearch() {
+  const pastList = $("<ul>");
+  geoStorage.forEach(function (file) {
+    const pastPlace = $("<li>");
+    console.log(file[2]);
+    pastPlace.text(file[2]);
+    pastPlace.addClass("");
+    pastPlace.appendTo(pastList);
+  });
+  pastList.appendTo(pastEl);
+}
+
+pastBtnEl.one("click", pastSearch);
