@@ -94,16 +94,32 @@ function setupMap(center) {
         
         const createCard = (placeName, address) => {
           const cardContainer = document.createElement("div");
-          cardContainer.classList.add("card");
+          cardContainer.classList.add(
+            "card",
+            "border",
+            "border-danger",
+            "border-4",
+            "rounded",
+            "col-lg-8",
+            "m-3",
+            "p-3",
+            "bg-gradient-danger"
+          );
+          cardContainer.style.backgroundColor = "#ad803d";
           const nameEl = document.createElement("h1");
           nameEl.textContent = placeName;
+          nameEl.classList.add("card-title");
+          nameEl.style.backgroundColor = "#ad803d";
           const addressEl = document.createElement("p");
           addressEl.textContent = address;
+          addressEl.classList.add("card-text");
+          addressEl.style.backgroundColor = "#ad803d";
           cardContainer.appendChild(nameEl);
           cardContainer.appendChild(addressEl);
           return cardContainer;
         };
         const cardList = document.getElementById("card-list");
+        
         cardList.innerHTML = "";
         for (let i = 0; i < places.results.length; i++) {
           let place = places.results[i];
@@ -119,15 +135,10 @@ function setupMap(center) {
   });
 }
 
-// function clearCards(){
-
-// }
-
 function pastSearch() {
   const pastList = $("<ul>");
   geoStorage.forEach(function (file) {
     const pastPlace = $("<li>");
-    console.log(file[2]);
     pastPlace.text(file[2]);
     pastPlace.addClass("");
     pastPlace.appendTo(pastList);
