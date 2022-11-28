@@ -1,5 +1,5 @@
 //global variables
-const searchEl = $("#search");
+const pastBtnEl = $("#pastbtn");
 const reviewsContainer = $("#reviews");
 const pastEl = $("#pastsearches");
 const mapEl = $("#map");
@@ -69,6 +69,7 @@ function setupMap(center) {
     const coords = midpoint.geometry.coordinates;
     let lat = coords[1];
     let lng = coords[0];
+
     fourUrl = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
     marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
@@ -83,14 +84,15 @@ function setupMap(center) {
     };
 
     async function fourSquare() {
-      
       const response = await fetch(fourUrl, options);
       const data = await response.json();
       cardRenderer(data);
-      
+
       coords.push(data.results[0].name);
       geoStorage.push(coords);
       localStorage.setItem("middle", JSON.stringify(geoStorage));
+
+      console.log(geoStorage);
       async function cardRenderer(places) {
         const createCard = (placeName, address) => {
           console.log(placeName);
@@ -140,17 +142,19 @@ function setupMap(center) {
     //   reviewsContainer.empty();
     // }
     fourSquare();
-    
-    function pastSearch() {
-      const pastList = $("<ul>");
-      geoStorage.forEach(function (file) {
-        const pastPlace = $("<li>");
-        pastPlace.text(file[0]);
-        pastPlace.addClass("");
-        pastPlace.appendTo(pastList);
-      });
-      pastList.appendTo(reviewsContainer);
-    }
-    pastSearch();
   });
 }
+
+function pastSearch() {
+  const pastList = $("<ul>");
+  geoStorage.forEach(function (file) {
+    const pastPlace = $("<li>");
+    console.log(file[2]);
+    pastPlace.text(file[2]);
+    pastPlace.addClass("");
+    pastPlace.appendTo(pastList);
+  });
+  pastList.appendTo(reviewsContainer);
+}
+
+pastBtnEl.one("click", pastSearch);
