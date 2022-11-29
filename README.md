@@ -156,7 +156,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * Arthur Cann -      [Github](https://github.com/artiecannv) - [Email](mailTo:thefiftharthur@gmail.com)
 * Ben Orlowski - [GitHub](https://github/pick1100)  -  [Email](mailTo:BenOrlowski@Me.com)
 * Brendan Borowski - [Github](https://Github.com/loudwhisperer)
-* Christin Carter - [Github](https://Github.com/porkchoppy)
+* Christin Carter - [Github](https://Github.com/porkchoppy) [Email](mailTo:raspberry.muppet@gmail.com)
 
 Project Link: [Github.com/artiecannv/mark-me-in-the-middle](https://github.com/artiecannv/mark-me-in-the-middle)
 

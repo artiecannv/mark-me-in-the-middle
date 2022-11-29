@@ -103,9 +103,6 @@ function setupMap(center) {
               "border-4",
               "rounded",
               "fs-5",
-              // "m-3",
-              // "p-3",
-              // "bg-gradient-danger"
             );
             cardContainer.style.backgroundColor = "#ad803d";
             const nameEl = document.createElement("h1");
@@ -128,13 +125,6 @@ function setupMap(center) {
             let placeName = place?.name;
             let placeCard = createCard(placeName, address);
             cardList.appendChild(placeCard);
-          }
-        } catch (error) {
-          console.error(error);
-          const errorEl = $("h1");
-          errorEl.text("There are no locations near your middle");
-          errorEl.addClass("text-danger");
-          errorEl.appendTo(pastEl);
         }
       }
     }
@@ -149,7 +139,6 @@ function pastSearch() {
     pastPlace.text(file[2]);
     pastPlace.addClass("card-2");
     pastPlace.addClass("card");
-    pastPlace.appendTo(pastList);
   });
   pastList.appendTo(pastEl);
 }

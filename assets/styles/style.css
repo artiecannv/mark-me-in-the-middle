@@ -15,7 +15,6 @@ img {
   display: flex;
   height: auto;
   max-width: 15vw;
-
 }
 
 .card {
@@ -26,17 +25,16 @@ img {
   border-radius: 10px;
   padding: 1rem;
   background-color: #4b4959;
-
 }
 
 #card-list {
-display: inline-flex;
-flex-direction: row;
-align-items:stretch;
-justify-content: center;
-margin: 0%;
-padding: 0%;
-align-content: space-around;
+  display: inline-flex;
+  flex-direction: row;
+  align-items:stretch;
+  justify-content: center;
+  margin: 0%;
+  padding: 0%;
+  align-content: space-around;
 }
 
 .card-body,
@@ -63,7 +61,7 @@ align-content: space-around;
   max-height: 20vh;
   align-items: stretch;
   background-color: #7a788b;
-height: min-content;
+  height: min-content;
 }
 
 body {
@@ -73,7 +71,6 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
     background-color: #4b4959;
-
 }
 
 .label {
@@ -100,7 +97,6 @@ body {
 }
 
 #reviews {
- 
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -113,7 +109,6 @@ body {
 .main{
   height: 100vh;
   width: 100vw;
-
   display: inline-flex;
 }
 
@@ -135,7 +130,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #7a788b;
-
 }
 
 .btn {
@@ -161,4 +155,23 @@ ul{
   flex-wrap: wrap;
   align-content:space-around;
   padding: 5px;
+}
+
+.pastCards {
+  height: 5rem;
+  width: 10rem;
+  background-color: #ad803d;
+  border-radius: 10%;
+  margin-bottom: 3rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.pastCards:hover {
+  cursor: default;
+  text-decoration: solid;
+  font-weight: bolder;
+  transition: 150ms;
+  transform: scale(1.03);
+  box-shadow: 0 0.4rem 1.4rem 0 rgba(10, 10, 10, 0.6);
 }
