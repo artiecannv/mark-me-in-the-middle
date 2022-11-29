@@ -75,7 +75,6 @@ margin-left: 25%;
   margin-left: 30%;
   border: 1rem solid #AD803D;
   border-radius: 10px;
-  
 }
 
 #reviews {
@@ -101,3 +100,21 @@ margin-left: 25%;
   border: 0;
 }
 
+.pastCards {
+  height: 5rem;
+  width: 10rem;
+  background-color: #ad803d;
+  border-radius: 10%;
+  margin-bottom: 3rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.pastCards:hover {
+  cursor: default;
+  text-decoration: solid;
+  font-weight: bolder;
+  transition: 150ms;
+  transform: scale(1.03);
+  box-shadow: 0 0.4rem 1.4rem 0 rgba(10, 10, 10, 0.6);
+}

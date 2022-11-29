@@ -108,17 +108,17 @@ function setupMap(center) {
             "rounded",
             "col-lg-8",
             "m-3",
-            "p-3",
+            "p-5",
             "bg-gradient-danger"
           );
           cardContainer.style.backgroundColor = "#ad803d";
           const nameEl = document.createElement("h1");
           nameEl.textContent = placeName;
-          nameEl.classList.add("card-title");
+          nameEl.classList.add("card-title", "p-1");
           nameEl.style.backgroundColor = "#ad803d";
           const addressEl = document.createElement("p");
           addressEl.textContent = address;
-          addressEl.classList.add("card-text");
+          addressEl.classList.add("card-text", "p-3");
           addressEl.style.backgroundColor = "#ad803d";
           cardContainer.appendChild(nameEl);
           cardContainer.appendChild(addressEl);
@@ -152,7 +152,7 @@ function pastSearch() {
   geoStorage.forEach(function (file) {
     const pastPlace = $("<li>");
     pastPlace.text(file[2]);
-    pastPlace.addClass("");
+    pastPlace.addClass("pastCards");
     pastPlace.appendTo(pastList);
   });
   pastList.appendTo(pastEl);
