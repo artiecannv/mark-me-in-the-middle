@@ -86,18 +86,16 @@ function setupMap(center) {
       const response = await fetch(fourUrl, options);
       const data = await response.json();
       try {
-        cardRenderer(data);
-        coords.push(data.results[0].name);
-        geoStorage.push(coords);
-        localStorage.setItem("middle", JSON.stringify(geoStorage));
-      } catch (error) {
+          cardRenderer(data);
+          coords.push(data.results[0].name);
+          geoStorage.push(coords);
+          localStorage.setItem("middle", JSON.stringify(geoStorage));
+        }
+       catch (error) {
         console.error(error);
-      } finally {
-          const errorEl = $("h1");
-          errorEl.text("There are no locations near your middle");
-          errorEl.addClass("text-danger");
-          errorEl.appendTo(pastEl);
+        
       }
+         
       async function cardRenderer(places) {
        try {
         const createCard = (placeName, address) => {
@@ -137,13 +135,12 @@ function setupMap(center) {
           cardList.appendChild(placeCard);
         }
       } catch (error){
-        console.error(error)
-      } finally {
+        console.error(error);
         const errorEl = $("h1");
         errorEl.text("There are no locations near your middle");
         errorEl.addClass("text-danger");
         errorEl.appendTo(pastEl);
-      }
+      } 
       }
     }
     fourSquare();
