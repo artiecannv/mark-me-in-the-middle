@@ -33,15 +33,16 @@ img {
 }
 
 .card-2, 
-.card-body2, 
-.input-2,
-.label-2  {
-  background-color: #b03028; 
+.card-body2  {
+  background-color: #b03028;
+  padding: 4px 4px;
+  width: 40%;
+  display: flex;
+
 }
 
 .navbar {
-  background-color: #7a788b
-  ;
+  background-color: #7a788b;
 }
 
 body {
