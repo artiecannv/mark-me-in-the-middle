@@ -28,6 +28,7 @@ img {
   background-color: #4b4959;
 
 }
+
 #card-list {
 display: inline-flex;
 flex-direction: row;
@@ -37,6 +38,7 @@ margin: 0%;
 padding: 0%;
 align-content: space-around;
 }
+
 .card-body,
 .border,
 .label {
@@ -51,7 +53,6 @@ align-content: space-around;
 .card-2,
 .card-body2 {
   background-color: #7a788b;
-;
   padding: 4px 4px;
   display: flex;
 }
@@ -64,6 +65,7 @@ align-content: space-around;
   background-color: #7a788b;
 height: min-content;
 }
+
 body {
   color: #404040;
   font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", sans-serif;
@@ -108,13 +110,13 @@ body {
   align-content: space-around;
 }
 
-
 .main{
   height: 100vh;
   width: 100vw;
 
   display: inline-flex;
 }
+
 .btn:hover {
   cursor: pointer;
   box-shadow: 0 0.4rem 1.4rem 0 rgba(221, 224, 228, 0.6);
@@ -123,6 +125,7 @@ body {
   color: white;
   border: 0;
 }
+
 #locationInTheInfo{
   display: flex;
   padding:0;
@@ -134,8 +137,8 @@ body {
   background-color: #7a788b;
 
 }
-.btn {
 
+.btn {
   background-color: #b03028;
   color: black;
   border-radius: 10px;
@@ -144,21 +147,18 @@ body {
   align-self: center;
   flex-direction: row;
 }
+
 #pastsearches{
 align-content: space-around;
 display: inline-flex;
 flex-direction: row;
 align-content: space-between;
-
-
 }
+
 ul{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content:space-around;
   padding: 5px;
-;
-
-  
 }
