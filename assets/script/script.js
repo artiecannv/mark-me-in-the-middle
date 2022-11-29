@@ -34,7 +34,6 @@ function setupMap(center) {
   }
 
   //setting up map with parameters from mapbox.com
-
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v12",
@@ -42,7 +41,6 @@ function setupMap(center) {
     zoom: 14,
     projection: "globe",
   });
-
   const directions = new MapboxDirections({
     accessToken: mapboxgl.accessToken,
     controls: {
@@ -68,12 +66,10 @@ function setupMap(center) {
     const coords = midpoint.geometry.coordinates;
     let lat = coords[1];
     let lng = coords[0];
-
     fourUrl = `https://api.foursquare.com/v3/places/nearby?ll=${lat}${space}${lng}`;
     marker = new mapboxgl.Marker()
       .setLngLat(midpoint.geometry.coordinates)
       .addTo(map);
-
     const options = {
       method: "GET",
       headers: {
@@ -82,78 +78,67 @@ function setupMap(center) {
       },
     };
 
+    //Calls FourSquare and returns the locations around the specified middle point
     async function fourSquare() {
       const response = await fetch(fourUrl, options);
       const data = await response.json();
       try {
-          cardRenderer(data);
-          coords.push(data.results[0].name);
-          geoStorage.push(coords);
-          localStorage.setItem("middle", JSON.stringify(geoStorage));
-        }
-       catch (error) {
-        console.error(error);
-        
+        cardRenderer(data);
+        coords.push(data.results[0].name);
+        geoStorage.push(coords);
+        localStorage.setItem("middle", JSON.stringify(geoStorage));
       }
-         
-      async function cardRenderer(places) {
-       try {
-        const createCard = (placeName, address) => {
-          const cardContainer = document.createElement("div");
-          cardContainer.classList.add(
-            "card",
-            "border",
-            "border-danger",
-            "border-4",
-            "rounded",
-            "col-lg-8",
-            "m-3",
-            "p-5",
-            "bg-gradient-danger"
-          );
-          cardContainer.style.backgroundColor = "#ad803d";
-          const nameEl = document.createElement("h1");
-          nameEl.textContent = placeName;
-          nameEl.classList.add("card-title", "p-1");
-          nameEl.style.backgroundColor = "#ad803d";
-          const addressEl = document.createElement("p");
-          addressEl.textContent = address;
-          addressEl.classList.add("card-text", "p-3");
-          addressEl.style.backgroundColor = "#ad803d";
-          cardContainer.appendChild(nameEl);
-          cardContainer.appendChild(addressEl);
-          return cardContainer;
-        };
-        const cardList = document.getElementById("card-list");
-        
-        cardList.innerHTML = "";
-        for (let i = 0; i < places.results.length; i++) {
-          let place = places.results[i];
-          let address = place?.location?.formatted_address;
-          let placeName = place?.name;
-          let placeCard = createCard(placeName, address);
-          cardList.appendChild(placeCard);
-        }
-      } catch (error){
+      catch (error) {
         console.error(error);
-        const errorEl = $("h1");
-        errorEl.text("There are no locations near your middle");
-        errorEl.addClass("text-danger");
-        errorEl.appendTo(pastEl);
-      } 
+      }
+      //Creates elements with the businesses that are nearby the location given in Lat/Lon coordinates
+      async function cardRenderer(places) {
+        try {
+          const createCard = (placeName, address) => {
+            const cardContainer = document.createElement("div");
+            cardContainer.classList.add(
+              "card",
+              "border",
+              "border-danger",
+              "border-4",
+              "rounded",
+              "fs-5",
+            );
+            cardContainer.style.backgroundColor = "#ad803d";
+            const nameEl = document.createElement("h1");
+            nameEl.textContent = placeName;
+            nameEl.classList.add("card-title");
+            nameEl.style.backgroundColor = "#ad803d";
+            const addressEl = document.createElement("p");
+            addressEl.textContent = address;
+            addressEl.classList.add("card-text");
+            addressEl.style.backgroundColor = "#ad803d";
+            cardContainer.appendChild(nameEl);
+            cardContainer.appendChild(addressEl);
+            return cardContainer;
+          };
+          const cardList = document.getElementById("card-list");
+          cardList.innerHTML = "";
+          for (let i = 0; i < places.results.length; i++) {
+            let place = places.results[i];
+            let address = place?.location?.formatted_address;
+            let placeName = place?.name;
+            let placeCard = createCard(placeName, address);
+            cardList.appendChild(placeCard);
+        }
       }
     }
     fourSquare();
   });
 }
-
+// Stores and updates the the previous search results in localStorage
 function pastSearch() {
   const pastList = $("<ul>");
   geoStorage.forEach(function (file) {
     const pastPlace = $("<li>");
     pastPlace.text(file[2]);
-    pastPlace.addClass("pastCards");
-    pastPlace.appendTo(pastList);
+    pastPlace.addClass("card-2");
+    pastPlace.addClass("card");
   });
   pastList.appendTo(pastEl);
 }

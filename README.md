@@ -166,7 +166,7 @@ Project Link: [Github.com/artiecannv/mark-me-in-the-middle](https://github.com/a
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
+* [CSS Reset](https://github.com/elad2412/the-new-css-reset)
 * [JQuery](www.JQuery-url)
 * [Bootstrap](https://getbootstrap.com)
 * [Best README Template](https://github.com/othneildrew/Best-README-Template)
