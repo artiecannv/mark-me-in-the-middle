@@ -31,32 +31,36 @@
     <link rel="icon" href="./assets/images/favicon.ico" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
 
-    <title>Mark Me In The Middle</title>
   </head>
   <body>
     <header>
       <nav class="navbar">
-      <!-- Logo picture and hero styling -->
-      <img src="./assets/images/final_logo.png" alt="Mark-Me-in-the-Middle-logo" />
+        <!-- Logo picture and hero styling -->
+        <img
+          src="./assets/images/final_logo.png"
+          alt="Mark-Me-in-the-Middle-logo"
+        />
       </nav>
     </header>
     <main>
-    
-      <div id="map" style="width: 750px; height: 750px; margin: auto" class="m-auto"></div>
-    
+      <div>
+        
+        <article id="card-list"></article>
+        <div
+          id="map"
+          style="width: 75vw; height: 75vh; margin: auto"
+          class="m-auto"
+        ></div>
+      </div>
 
       <!-- TODO: Dynamically populate with list of locations via api -->
       <section id="reviews">
-
-        <div class="card card-2">
-          <div class="card-body card-body2">
-            Locations in the Middle
-          </div>
-        </div>  
-          <article id="card-list"></article>
+          <div class=" card"  id="locationInTheInfo">Find the middle point between two locations and different businesses around the middle point!</div>
+        <section id="pastsearches">
+        </button>
       </section>
-      <section id="pastsearches">
-        <button id="pastbtn" type="button" class="btn btn-danger btn-lg"> See Past Searches</button>
+        <button id="pastbtn" type="button" class="btn btn-danger btn-lg">
+          See Past Searches
       </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>

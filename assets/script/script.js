@@ -106,10 +106,10 @@ function setupMap(center) {
             "border-danger",
             "border-4",
             "rounded",
-            "col-lg-8",
-            "m-3",
-            "p-3",
-            "bg-gradient-danger"
+            "fs-5",
+            // "m-3",
+            // "p-3",
+            // "bg-gradient-danger"
           );
           cardContainer.style.backgroundColor = "#ad803d";
           const nameEl = document.createElement("h1");
@@ -151,8 +151,9 @@ function pastSearch() {
   const pastList = $("<ul>");
   geoStorage.forEach(function (file) {
     const pastPlace = $("<li>");
-    pastPlace.text(file[2]);
-    pastPlace.addClass("");
+    pastPlace.text(file[2] );
+    pastPlace.addClass("card-2");
+    pastPlace.addClass("card");
     pastPlace.appendTo(pastList);
   });
   pastList.appendTo(pastEl);

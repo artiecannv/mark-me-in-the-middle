@@ -1,56 +1,77 @@
 * {
   box-sizing: border-box;
-  background-color: #4b4959;
   color: #000000;
+  display: inline-flex;
+  align-content:space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-self:stretch;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
   background: none;
-  display: block;
-  margin: auto;
+  display: flex;
+  height: auto;
+  max-width: 15vw;
+
 }
 
 .card {
-  background-color: #7a788b;
-  width: 25vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  padding: 5rem;
-}
+  padding: 1rem;
+  background-color: #4b4959;
 
+}
+#card-list {
+display: inline-flex;
+flex-direction: row;
+align-items:stretch;
+justify-content: center;
+margin: 0%;
+padding: 0%;
+align-content: space-around;
+}
 .card-body,
 .border,
 .label {
   background-color: #ad803d;
-} 
+}
 
-.card-1, 
+.card-1,
 .input-1 {
   background-color: #ad803d;
 }
 
-.card-2, 
-.card-body2  {
-  background-color: #b03028;
+.card-2,
+.card-body2 {
+  background-color: #7a788b;
+;
   padding: 4px 4px;
-  width: 40%;
   display: flex;
-
 }
 
 .navbar {
+  display: inline-flex;
+  width: 100vw;
+  max-height: 20vh;
+  align-items: stretch;
   background-color: #7a788b;
+height: min-content;
 }
-
 body {
   color: #404040;
   font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+    background-color: #4b4959;
+
 }
 
 .label {
@@ -58,40 +79,42 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 #geocoder-container > div {
-min-width: 50%;
-margin-left: 25%;
+  min-width: 50%;
+  margin-left: 25%;
 }
 
 #map {
-  height: 50vh;
+  height: 40vh;
   width: 40vw;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 30%;
-  border: 1rem solid #AD803D;
+  border: 1rem solid #ad803d;
   border-radius: 10px;
-  
 }
 
 #reviews {
-  margin-left: 37.5%;
-  height: 20vh;
-
+ 
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items:stretch;
+  align-content: space-around;
 }
 
-.btn {
-  margin-left: 75%;
-  background-color: #B03028;
-  color: black;
-  border-radius: 10px;
-  border: none;
-}
 
+.main{
+  height: 100vh;
+  width: 100vw;
+
+  display: inline-flex;
+}
 .btn:hover {
   cursor: pointer;
   box-shadow: 0 0.4rem 1.4rem 0 rgba(221, 224, 228, 0.6);
@@ -100,4 +123,42 @@ margin-left: 25%;
   color: white;
   border: 0;
 }
+#locationInTheInfo{
+  display: flex;
+  padding:0;
+  width:75vw;
+  max-height: 10vh;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #7a788b;
 
+}
+.btn {
+
+  background-color: #b03028;
+  color: black;
+  border-radius: 10px;
+  border: none;
+  max-width: 40vw;
+  align-self: center;
+  flex-direction: row;
+}
+#pastsearches{
+align-content: space-around;
+display: inline-flex;
+flex-direction: row;
+align-content: space-between;
+
+
+}
+ul{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content:space-around;
+  padding: 5px;
+;
+
+  
+}
