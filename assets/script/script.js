@@ -141,8 +141,7 @@ function pastSearch() {
   geoStorage.forEach(function (file) {
     const pastPlace = $("<li>");
     pastPlace.text(file[2]);
-    pastPlace.addClass("card-2");
-    pastPlace.addClass("card");
+    pastPlace.addClass("pastCards");
     pastPlace.appendTo(pastList);
   });
   pastList.appendTo(pastEl);
