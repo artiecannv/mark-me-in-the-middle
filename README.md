@@ -189,7 +189,7 @@ Project Link: [Github.com/artiecannv/mark-me-in-the-middle](https://github.com/a
 [license-url]: https://github.com/artiecannv/mark-me-in-the-middle/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: /assets/images/screenshot.png
+[product-screenshot]: /assets/images/mark-me-in-the-mockup.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
