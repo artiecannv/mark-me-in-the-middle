@@ -125,11 +125,15 @@ function setupMap(center) {
             let placeName = place?.name;
             let placeCard = createCard(placeName, address);
             cardList.appendChild(placeCard);
+          }
         }
-      }
+        catch (error) {
+            console.error(error);
+          }
+        }
     }
-    fourSquare();
-  });
+      fourSquare();
+    });
 }
 // Stores and updates the the previous search results in localStorage
 function pastSearch() {
@@ -139,6 +143,7 @@ function pastSearch() {
     pastPlace.text(file[2]);
     pastPlace.addClass("card-2");
     pastPlace.addClass("card");
+    pastPlace.appendTo(pastList);
   });
   pastList.appendTo(pastEl);
 }
